@@ -28,8 +28,10 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
   //Make the input standard
   playerChoice =
-    playerSelection[0].toUpperCase() + playerSelection.substr(1).toLowerCase();
+    playerSelection.charAt(0).toUpperCase() +
+    playerSelection.slice(1).toLowerCase();
   computerChoice = computerSelection;
+
   switch (playerChoice) {
     case "Rock":
       switch (computerChoice) {
@@ -76,10 +78,12 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   playerScore = 0;
   computerScore = 0;
+
   for (let i = 0; i < 5; i++) {
     playerSelection = prompt("Make your choice: Rock/Paper/Scissors ?");
     computerSelection = computerPlay();
     winner = playRound(playerSelection, computerSelection);
+
     switch (winner) {
       case -1:
         computerScore += 1;
