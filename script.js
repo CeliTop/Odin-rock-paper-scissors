@@ -63,41 +63,57 @@ function playRound(playerSelection) {
   }
 }
 
-function endGame() {}
+function endGame() {
+  if (playerScore > computerScore) {
+    alert("You win!");
+  } else {
+    alert("You loose!");
+  }
+  playerScore = 0;
+  computerScore = 0;
+  updateScore();
+  result.textContent = "Result: Not Started";
+}
 
 function updateScore() {
   playerDisplay.textContent = `Player: ${playerScore}`;
   computerDisplay.textContent = `Computer: ${computerScore}`;
 }
 
-let playerScore = 0;
-let computerScore = 0;
-const result = document.querySelector(".result");
-const playerDisplay = document.querySelector(".player_score");
-const computerDisplay = document.querySelector(".computer_score");
-
 function handleClick(playerChoice) {
-  if (playerScore == 5 || computerScore == 5) {
-    endGame();
-    return;
-  }
   winner = playRound(playerChoice);
   switch (winner) {
     case -1:
       result.textContent = "Result: You loose";
       computerScore++;
       updateScore();
+      root.style.setProperty("--click-color", "green");
       break;
     case 0:
       result.textContent = "Result: Draw";
+      root.style.setProperty("--click-color", "white");
+
       break;
     case 1:
       result.textContent = "Result: You win";
       playerScore++;
       updateScore();
+      root.style.setProperty("--click-color", "red");
+
       break;
   }
+
+  if (playerScore == 5 || computerScore == 5) {
+    endGame();
+    return;
+  }
 }
+let playerScore = 0;
+let computerScore = 0;
+const result = document.querySelector(".result");
+const playerDisplay = document.querySelector(".player_score");
+const computerDisplay = document.querySelector(".computer_score");
+const root = document.documentElement;
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) =>
