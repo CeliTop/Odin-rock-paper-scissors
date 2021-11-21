@@ -5,27 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RockPaperScissors</title>
-    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!--<script src="script.js" defer></script>-->
   </head>
   <body>
     <h1>Rock Paper Scissors</h1>
     <div class="scores">
-      <div class="player_score">Player:0</div>
-      <div class="computer_score">Computer:0</div>
+      <div class="player_score">Player: 0</div>
+      <div class="computer_score">Computer: 0</div>
     </div>
     <div class="choices">
-      <div class="Rock">
+      <button class="rock choice">
         <img src="./Images/rock.png" alt="rock" />
         <p>Rock</p>
-      </div>
-      <div class="Paper">
+      </button>
+      <button class="paper choice">
         <img src="./Images/paper.png" alt="paper" />
         <p>Paper</p>
-      </div>
-      <div class="Scissors">
+      </button>
+      <button class="scissors choice">
         <img src="Images/scissors.png" alt="scissors" />
         <p>Scissors</p>
-      </div>
+      </button>
     </div>
   </body>
 </html>
