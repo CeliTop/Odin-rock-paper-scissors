@@ -1,16 +1,4 @@
-function winMessage(playerChoice, computerChoice) {
-  return `You Win ! ${playerChoice} beats ${computerChoice}.`;
-}
-
-function looseMessage(playerChoice, computerChoice) {
-  return `You Loose ! ${computerChoice} beats ${playerChoice}.`;
-}
-
-function drawMessage(playerChoice) {
-  return `Draw ! You both played ${playerChoice}.`;
-}
-
-function computerPlay() {
+function randomChoice() {
   var choice = Math.floor(Math.random() * 3);
   switch (choice) {
     case 0:
@@ -25,12 +13,12 @@ function computerPlay() {
   }
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
   //Make the input standard
   playerChoice =
     playerSelection.charAt(0).toUpperCase() +
     playerSelection.slice(1).toLowerCase();
-  computerChoice = computerSelection;
+  computerChoice = randomChoice();
 
   switch (playerChoice) {
     case "Rock":
@@ -75,29 +63,43 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  playerScore = 0;
-  computerScore = 0;
+function endGame() {}
 
-  for (let i = 0; i < 5; i++) {
-    playerSelection = prompt("Make your choice: Rock/Paper/Scissors ?");
-    computerSelection = computerPlay();
-    winner = playRound(playerSelection, computerSelection);
+function updateScore() {
+  playerDisplay.textContent = `Player: ${playerScore}`;
+  computerDisplay.textContent = `Computer: ${computerScore}`;
+}
 
-    switch (winner) {
-      case -1:
-        computerScore += 1;
-        console.log(looseMessage(playerSelection, computerSelection));
-        break;
-      case 0:
-        console.log(drawMessage(computerSelection));
-        break;
-      case 1:
-        playerScore += 1;
-        console.log(winMessage(playerSelection, computerSelection));
-        break;
-    }
+let playerScore = 0;
+let computerScore = 0;
+const result = document.querySelector(".result");
+const playerDisplay = document.querySelector(".player_score");
+const computerDisplay = document.querySelector(".computer_score");
+
+function handleClick(playerChoice) {
+  if (playerScore == 5 || computerScore == 5) {
+    endGame();
+    return;
+  }
+  winner = playRound(playerChoice);
+  switch (winner) {
+    case -1:
+      result.textContent = "Result: You loose";
+      computerScore++;
+      updateScore();
+      break;
+    case 0:
+      result.textContent = "Result: Draw";
+      break;
+    case 1:
+      result.textContent = "Result: You win";
+      playerScore++;
+      updateScore();
+      break;
   }
 }
 
-game();
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) =>
+  button.addEventListener("click", () => handleClick(button.classList[0]))
+);
