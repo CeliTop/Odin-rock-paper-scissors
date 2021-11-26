@@ -88,10 +88,12 @@ h1 {
 }
 
 .results img {
-  padding: 50px;
+  padding: 5px;
+  margin: 30px;
   max-width: 20%;
   height: auto;
   border-radius: 50%;
+  border: solid 2px var(--grey);
 }
 
 .result {
