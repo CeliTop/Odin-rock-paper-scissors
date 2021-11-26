@@ -13,12 +13,40 @@ function randomChoice() {
   }
 }
 
+function updateChoiceDisplay(playerChoice, computerChoice) {
+  const playerDisp = document.querySelector(".player_choice");
+  const computerDisp = document.querySelector(".computer_choice");
+  switch (playerChoice) {
+    case "Rock":
+      playerDisp.src = "./Images/rock.png";
+      break;
+    case "Paper":
+      playerDisp.src = "./Images/paper.png";
+      break;
+    case "Scissors":
+      playerDisp.src = "./Images/scissors.png";
+      break;
+  }
+  switch (computerChoice) {
+    case "Rock":
+      computerDisp.src = "./Images/rock.png";
+      break;
+    case "Paper":
+      computerDisp.src = "./Images/paper.png";
+      break;
+    case "Scissors":
+      computerDisp.src = "./Images/scissors.png";
+      break;
+  }
+}
+
 function playRound(playerSelection) {
   //Make the input standard
   playerChoice =
     playerSelection.charAt(0).toUpperCase() +
     playerSelection.slice(1).toLowerCase();
   computerChoice = randomChoice();
+  updateChoiceDisplay(playerChoice, computerChoice);
 
   switch (playerChoice) {
     case "Rock":
